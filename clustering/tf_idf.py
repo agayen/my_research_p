@@ -29,7 +29,7 @@ dict1 = {}
 dict1 = defaultdict(lambda: 0, dict1)
 for i, text in enumerate(texts):
     tokens = nltk.word_tokenize(str(text))
-    tokens = stem_tokens(tokens,  nltk.PorterStemmer())
+    # tokens = stem_tokens(tokens,  nltk.PorterStemmer())
     stemmed_tokens = nltk.Text(tokens)
     for x in tokens:
         dict1[x] += 1
