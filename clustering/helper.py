@@ -65,19 +65,18 @@ def purity_score(y_clust,y_class):
 mets = ['manhattan', 'euclidean', 'cosine','chebyshev','pearson','jaccard']
 
 def get_metric(met):
-    match met:
-        case 'cosine':
-            metric = cosine_distance
-        case 'euclidean':
-            metric = euclidean_distance
-        case 'manhattan':
-            metric = manhattan_distance
-        case 'chebyshev':
-            metric = chebyshev_distance
-        case 'pearson':
-            metric = pearson_distance
-        case 'jaccard':
-            metric = jaccard_distance
+    if met == 'cosine':
+        metric = cosine_distance
+    elif met == 'euclidean':
+        metric = euclidean_distance
+    elif met == 'manhattan':
+        metric = manhattan_distance
+    elif met == 'chebyshev':
+        metric = chebyshev_distance
+    elif met == 'pearson':
+        metric = pearson_distance
+    elif met == 'jaccard':
+        metric = jaccard_distance
        
     return metric
 
