@@ -73,7 +73,7 @@ print("Document-Term Matrix for lsa created ..")
 get_lsa_data = get_main_results(lsa_topic_matrix, labels)
 print(get_lsa_data)
 
-file_path = 'las_results.json'
+file_path = 'lsa_results.json'
 with open(file_path, 'w') as json_file:
     json.dump(get_lsa_data, json_file)
 
