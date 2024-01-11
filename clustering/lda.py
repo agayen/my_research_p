@@ -4,10 +4,15 @@ import pandas as pd
 from helper import get_main_results
 import json
 
+def text_generator(data):
+    for doc in data:
+        yield doc
+
 final_df = pd.read_csv('clean_data.csv')
-# Sample collection of documents
-documents = final_df['doc_text'].values.astype('U')
+
+documents = text_generator(final_df['doc_text'].values.astype('S'))
 labels = final_df['number_label']
+
 # Step 1: Convert documents to a bag-of-words (BoW) representation
 vectorizer = CountVectorizer(max_features=3000)
 bow_matrix = vectorizer.fit_transform(documents)

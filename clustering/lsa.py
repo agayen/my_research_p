@@ -5,9 +5,13 @@ from sklearn.decomposition import TruncatedSVD
 import json
 from helper import get_main_results
 
+def text_generator(data):
+    for doc in data:
+        yield doc
+
 final_df = pd.read_csv('clean_data.csv')
-# final_df = final_df.head()
-documents = final_df['doc_text'].values.astype('U')
+
+documents = text_generator(final_df['doc_text'].values.astype('S'))
 labels = final_df['number_label']
 
 # Create a document-term matrix using TF-IDF vectorizer

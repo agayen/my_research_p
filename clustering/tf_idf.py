@@ -4,9 +4,13 @@ import pandas as pd
 from helper import get_main_results
 import json
 
+def text_generator(data):
+    for doc in data:
+        yield doc
+
 final_df = pd.read_csv('clean_data.csv')
 
-documents = final_df['doc_text'].values.astype('U')
+documents = text_generator(final_df['doc_text'].values.astype('S'))
 labels = final_df['number_label']
 
 # Create a TfidfVectorizer
