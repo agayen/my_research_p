@@ -95,4 +95,6 @@ def get_main_results(vectors, labels):
         score_data ['nmi'] = normalized_mutual_info_score(labels_array, clusters)
         data [met] = score_data
         
+        print(f"{met} finished -> {score_data}")
+        
     return data
