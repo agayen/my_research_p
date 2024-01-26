@@ -6,6 +6,7 @@ from sklearn.metrics.cluster import entropy
 from sklearn.metrics.cluster import contingency_matrix
 from sklearn.metrics import adjusted_rand_score
 from sklearn.metrics import normalized_mutual_info_score
+import time
 
 
 def manhattan_distance(u, v):
@@ -86,13 +87,16 @@ def get_main_results(vectors, labels):
         print(f'{met} starting..')
         metric = get_metric(met)
         score_data = {}
+        start_time = time.time()
         clusterer = KMeansClusterer(20, metric, avoid_empty_clusters=True)
         clusters = clusterer.cluster(vectors, assign_clusters=True, trace=False)
+        end_time = time.time()
         score_data ['entropy'] = entropy(clusters)
         labels_array = labels.values.tolist()
         score_data ['purity'] = purity_score(labels_array, clusters)
         score_data ['ari'] = adjusted_rand_score(labels_array, clusters)
         score_data ['nmi'] = normalized_mutual_info_score(labels_array, clusters)
+        score_data ['elapsed_time'] = end_time - start_time
         data [met] = score_data
         
         print(f"{met} finished -> {score_data}")
